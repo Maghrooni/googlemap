@@ -51,4 +51,4 @@ googlemap::show(array(
         ));
 ```
 
-[Visit my website][http://maghrooni.ir]
+[Visit My Website]: http://www.maghrooni.ir
