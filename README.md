@@ -7,7 +7,7 @@ GoogleMap is a laravel bundle that helps you Show a Google Map with Given Option
 ###Steps are simple ! 
 
 - download and install it ! 
-- set your API key and other default options on ```php Config ``` file
+- set your API key and other default options on ``` Config ``` file
 - use it ;)
 
 ## Installation
@@ -39,7 +39,7 @@ googlemap::show(array(
 ```
 
 ###Map with Options : 
-you can set any options you find in ```php Config ``` file !
+you can set any options you find in ``` Config ``` file !
 
 ```php
 googlemap::show(array(
