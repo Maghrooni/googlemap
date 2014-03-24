@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Googlemap by Maghrooni</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/Maghrooni/googlemap">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Googlemap</h1>
+            <h2>GoogleMap is a laravel bundle that helps you Show a Google Map with Given Options ASAP !</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/Maghrooni/googlemap/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/Maghrooni/googlemap/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>
+<a name="googlemap" class="anchor" href="#googlemap"><span class="octicon octicon-link"></span></a>GoogleMap</h1>
+
+<p>GoogleMap is a laravel bundle that helps you Show a Google Map with Given Options ASAP !</p>
+
+<h3>
+<a name="steps-are-simple-" class="anchor" href="#steps-are-simple-"><span class="octicon octicon-link"></span></a>Steps are simple !</h3>
+
+<ul>
+<li>download and install it ! </li>
+<li>set your API key and other default options on <code>Config</code> file</li>
+<li>use it ;)</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>You can install this bundle by running the following CLI command:</p>
+
+<div class="highlight highlight-php"><pre><span class="nx">php</span> <span class="nx">artisan</span> <span class="nx">bundle</span><span class="o">:</span><span class="nx">install</span> <span class="nx">googlemap</span>
+</pre></div>
+
+<p>or 
+You Can Download the files and put them in your Bundles Directory</p>
+
+<p>Add the following line to application/bundles.php</p>
+
+<div class="highlight highlight-php"><pre><span class="s1">'googlemap'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'auto'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">),</span>
+</pre></div>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>in your View files , you can Show a Google Map with coordinates just like the examples below : </p>
+
+<h3>
+<a name="quick-map-" class="anchor" href="#quick-map-"><span class="octicon octicon-link"></span></a>Quick Map :</h3>
+
+<div class="highlight highlight-php"><pre><span class="nx">googlemap</span><span class="o">::</span><span class="na">show</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+            <span class="s1">'lat'</span> <span class="o">=&gt;</span> <span class="s1">'27.274161'</span><span class="p">,</span>
+            <span class="s1">'lng'</span> <span class="o">=&gt;</span> <span class="s1">'51.698364'</span><span class="p">,</span>
+        <span class="p">));</span>
+</pre></div>
+
+<h3>
+<a name="map-with-options-" class="anchor" href="#map-with-options-"><span class="octicon octicon-link"></span></a>Map with Options :</h3>
+
+<p>you can set any options you find in <code>Config</code> file !</p>
+
+<div class="highlight highlight-php"><pre><span class="nx">googlemap</span><span class="o">::</span><span class="na">show</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+            <span class="s1">'lat'</span> <span class="o">=&gt;</span> <span class="s1">'27.274161'</span><span class="p">,</span>
+            <span class="s1">'lng'</span> <span class="o">=&gt;</span> <span class="s1">'51.698364'</span><span class="p">,</span>
+                  <span class="s1">'key'</span> <span class="o">=&gt;</span> <span class="s1">'Your API KEY HERE'</span><span class="p">,</span>
+                  <span class="s1">'content'</span><span class="o">=&gt;</span><span class="s1">'Text you want to show on the Marker'</span><span class="p">,</span>
+                  <span class="s1">'zoom'</span><span class="o">=&gt;</span><span class="s1">'10'</span><span class="p">,</span>
+        <span class="p">));</span>
+</pre></div>
+
+<p><a href="http://www.maghrooni.ir">Visit My Website</a></p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/Maghrooni">Maghrooni</a> can be found on <a href="https://github.com/Maghrooni/googlemap">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
