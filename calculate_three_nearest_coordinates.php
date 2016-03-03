@@ -6,77 +6,63 @@
   <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
           </head> 
 <body>
-    <div id="map" style="width:60%;height:80%;"></div>
-
-	
 <?php
-$x1=$_POST['x'];
-$y1=$_POST['y'];
-
-$con=mysqli_connect("localhost","db_username","password","db_name");//connection establish
-$query="select * from coordinate_details";// fetching the coordinate details in the data base
-$result=mysqli_query($con,$query);
-
-while($row=mysqli_fetch_array($result))
-{
-	$lat_t[]=$row[5];
-	$log_t[]=$row[6];
-	$id_t[]=$row[0];
-	$name_t[]=$row[1];
-
-}
-
-	for($j=0;$j<count($lat_t);$j++){
-	$dist[]=distance($x1,$y1,$lat_t[$j],$log_t[$j]);
-	$dist1[]=distance($x1,$y1,$lat_t[$j],$log_t[$j]);
+    $x1=$_POST['x'];
+    $y1=$_POST['y'];
+    include 'fetch_data.php';//To fetch data from the database
+    function fetching_data($lat_t,$log_t,$id_t)
+    {
+        $lat_t[]=$lat_t;
+        $log_t[]=$log_t;
+        $id_t[]=$id_t;
+    }
+    for($j=0;$j<count($lat_t);$j++)
+    {
+        $dist[]=distance($x1,$y1,$lat_t[$j],$log_t[$j]);
+        $dist1[]=distance($x1,$y1,$lat_t[$j],$log_t[$j]);
+    }
+    for($j=1;$j<count($dist);$j++){
+	$k=$dist[$j];
+	$l=$j-1;
+	while($l>=0&&$dist[$l]>$k)
+	{
+	     $dist[$l+1]=$dist[$l];
+	     $l=$l-1;
 	}
+	     $dist[$l+1]=$k;
+     }
+    for($j=0;$j<count($dist);$j++){
+         if($dist1[$j]==$dist[0])
+	 {
+            $m1=$j;
+	 }
+	 if($dist1[$j]==$dist[1])
+	 {
+            $m2=$j;
+         }
+	 if($dist1[$j]==$dist[3])
+	 {
+	    $m3=$j;
+         }
 
-	for($j=1;$j<count($dist);$j++){
-		$k=$dist[$j];
-		$l=$j-1;
-		while($l>=0&&$dist[$l]>$k)
-		{
-			$dist[$l+1]=$dist[$l];
-			$l=$l-1;
-			}
-		$dist[$l+1]=$k;
-			}
+	}
+    $taxi_lat=array($lat_t[$m1],$lat_t[$m2],$lat_t[$m3]);
+    $taxi_log=array($log_t[$m1],$log_t[$m2],$log_t[$m3]);
 
-
-
-
-	for($j=0;$j<count($dist);$j++){
-		if($dist1[$j]==$dist[0])
-		{
-			$m1=$j;
-			}
-		if($dist1[$j]==$dist[1])
-		{
-			$m2=$j;
-			}
-		if($dist1[$j]==$dist[3])
-		{
-			$m3=$j;
-			}
-
-			}
-			
-		
-		$taxi_lat=array($lat_t[$m1],$lat_t[$m2],$lat_t[$m3]);
-		$taxi_log=array($log_t[$m1],$log_t[$m2],$log_t[$m3]);
-	?>
-<table border="1">
+?>
+    <h1><u>Details and marking of 3 nearest coordinates in the database w.r.t. Coordinate: <?php echo $x1; ?> , <?php echo $y1; ?></u></h1>
+    <pre><i>This code can be used to track and identify 3 nearest cabs, ambulances, police vans etc to a victim identified by a coordinate.<br>This code shall be useful for beginners who have just started working on maps and are interested in implementing it for real time problem solving.</i></pre>
+<table border="1" style="width:60%;">
  
     <tr>
-    <th>Minimum</th>
+    <th>S_NO</th>
     <th>ID</th>
-    <th>Name</th>
     <th>Distance</th>
     </tr>
     <tr>
-    <th><?php echo "Coordinate 1 1";?></th>
+    <th><?php echo "Coordinate  1";?></th>
 	<td><?php echo $id_t[$m1];?></td>
-	<td><?php echo $name_t[$m1];?></td>
+	
 	<td><?php echo $dist[0];?></td>
     </tr>
 
@@ -84,7 +70,7 @@ while($row=mysqli_fetch_array($result))
     <tr>
     <th><?php echo "Coordinate 2";?></th>
 	<td><?php echo $id_t[$m2];?></td>
-	<td><?php echo $name_t[$m2];?></td>
+	
 	<td><?php echo $dist[1];?></td>
     </tr>
 
@@ -93,11 +79,16 @@ while($row=mysqli_fetch_array($result))
     <tr>
     <th><?php echo "Coordinate 3";?></th>
 	<td><?php echo $id_t[$m3];?></td>
-	<td><?php echo $name_t[$m3];?></td>
+
 	<td><?php echo $dist[2];?></td>
     </tr>
 </table>
-    <br/><br/>
+
+<div id="map" style="width:60%;height:80%;"></div>
+
+	
+
+
 
 
     <?php 
@@ -117,7 +108,7 @@ function distance($lat1,$log1,$lat2,$log2)
 
 
   <script type="text/javascript">
-  alert("knkmkzxa");
+ 
   var cplat="<?php echo $x1?>";
   var cplong="<?php echo $y1?>";
   var a1lat="<?php echo $taxi_lat[0]?>";
@@ -134,9 +125,9 @@ function distance($lat1,$log1,$lat2,$log2)
     ];
 
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 18,
+      zoom: 10,
      // center: new google.maps.LatLng(-33.92, 151.25),
-	 center: new google.maps.LatLng(21.2088774, 81.37806320000),
+	 center: new google.maps.LatLng(<?php echo $x1; ?>, <?php echo $y1; ?>),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
